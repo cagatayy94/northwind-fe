@@ -9,7 +9,7 @@ export default function ProductList() {
     useEffect(()=>{
         let productService = new ProductService();
         productService.getProducts().then(result=>setProducts(result.data.data))
-    })
+    }, [])
 
     return (
         <div>
@@ -32,7 +32,6 @@ export default function ProductList() {
                             <Table.Cell>{product.unitPrice}</Table.Cell>
                             <Table.Cell>{product.unitsInStock}</Table.Cell>
                             <Table.Cell>{product.quantityPerUnit}</Table.Cell>
-                            <Table.Cell>{product.productName}</Table.Cell>
                             <Table.Cell>{product.category.categoryName}</Table.Cell>
                         </Table.Row>
                         ))
@@ -41,7 +40,7 @@ export default function ProductList() {
 
                 <Table.Footer>
                     <Table.Row>
-                        <Table.HeaderCell colSpan='3'>
+                        <Table.HeaderCell colSpan='5'>
                             <Menu floated='right' pagination>
                                 <Menu.Item as='a' icon>
                                     <Icon name='chevron left' />
