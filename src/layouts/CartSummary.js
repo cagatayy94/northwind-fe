@@ -1,13 +1,21 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { Dropdown, DropdownDivider } from 'semantic-ui-react'
+import { Dropdown, DropdownDivider, Label } from 'semantic-ui-react'
+import { useSelector } from 'react-redux'
+
 export default function CartSummary() {
+    const {cartItems} = useSelector(state => state.cart);
     return (
         <div>
             <Dropdown item text='Language'>
                 <Dropdown.Menu>
-                    <Dropdown.Item>Asus</Dropdown.Item>
-                    <Dropdown.Item>Dell</Dropdown.Item>
+                    {
+                        cartItems.map((cartItem) => (
+                            <Dropdown.Item key={cartItem.product.id}>{cartItem.product.productName}
+                            <Label>{cartItem.quantity}</Label>
+                            </Dropdown.Item>
+                        ))
+                    }
                     <DropdownDivider/>
                     <Dropdown.Item as={NavLink} to="/cart">Sepete git</Dropdown.Item>
                 </Dropdown.Menu>
